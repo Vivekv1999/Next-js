@@ -1,4 +1,4 @@
-import {connect} from "@/dbConfig/dbConfig.ts"
+import {connect} from "@/dbConfig/dbConfig"
 import User from "@/models/userModel";
 import {NextRequest,NextResponse} from "next/server"
 import bcryptjs from "bcryptjs" 
@@ -8,7 +8,7 @@ connect()
 export async function POST(request:NextRequest){
     try {
         const requestBody = await request.json();
-        const {username,email,password} = requestBody
+        const {userName,email,password} = requestBody
 
         const user = await User.findOne({email})
         if(user){
@@ -19,7 +19,7 @@ export async function POST(request:NextRequest){
         const hashedPassword = await bcryptjs.hash(password,salt)
 
         const newUser = new User({
-            username,
+            userName,
             email,
             password:hashedPassword
         })

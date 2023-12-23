@@ -2,15 +2,34 @@
 import Link from "next/link"
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
-import {axios} from "axios"
-export default function LoginPage(){
+import axios from "axios"
+import toast from "react-hot-toast"
 
+export default function LoginPage(){
+const router=useRouter()
+const [isLoading,setIsLoading] = useState(false)
     const [user,setUser]=useState({
             email:"",
             password:""
 })
 
 const onLogin = async() =>{
+    try {
+        setIsLoading(true)
+        const response = await axios.post('/api/users/login',user)
+        console.log(response,"login data: ")
+        toast.success("login successful") 
+        router.push("/profile")
+
+
+        
+    } catch (error:any) {
+        console.error(error)
+        toast.error(error.message)
+    }
+    finally {
+        setIsLoading(false)
+    }
 
 }
     return(
@@ -41,6 +60,7 @@ const onLogin = async() =>{
         
         <button
         className="p-2 mt-5 mb-2 border border-grey-250 rounded-lg "
+        disabled={isLoading}
         onClick={onLogin}
         >Login here</button>
 
