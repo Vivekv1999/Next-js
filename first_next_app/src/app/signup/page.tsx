@@ -68,6 +68,7 @@ try {
         className="p-2 mt-5 mb-2 border border-grey-250 rounded-lg "
         disabled={loading}
         onClick={()=>onSignUp()}
+        
         >Signup here</button>
 
 <Link href="/login">Visit login page</Link>

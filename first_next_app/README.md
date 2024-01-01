@@ -42,3 +42,7 @@ jsonwebtoken
 noemailer
 react-hot-toast
 mongoose
+nodemailer   ---- npm i --save-dev @types/nodemailer  //and then it works 
+
+mailTrap ---free tier use---
+migigas908@ubinert.com
