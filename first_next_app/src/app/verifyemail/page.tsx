@@ -1,12 +1,10 @@
 "use client"
-
 import axios from 'axios'
-import { error } from 'console'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import Link from "next/link"
+import React, { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
-export default function page() {
+export default function Verifyemail() {
     const router=useRouter()
     const [token,setToken]=useState("")
     const [verified,setVerified]=useState(false)
@@ -16,7 +14,9 @@ export default function page() {
         if(token.length>0) {
         verifyUserEmail()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[token])
+
 
 useEffect(()=>{
 const urlToken=window.location.search.split("=")[1]

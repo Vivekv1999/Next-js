@@ -1,5 +1,8 @@
+import { connect } from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+
+connect()
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,8 +10,8 @@ export async function POST(request: NextRequest) {
     const { token } = reqBody;
 
     const userData = await User.findOne({
-      verifiToken: token,
-      verifiTokenExpiry: { $gt: Date.now() },
+      verfifyToken: token,
+      verifyTokenExpiry: { $gt: Date.now() },
     });
 
     
