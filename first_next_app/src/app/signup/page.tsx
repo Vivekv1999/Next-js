@@ -3,7 +3,7 @@ import Link from "next/link"
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
-import toast from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 
 export default function SignUpPage(){
     const router=useRouter()
@@ -20,6 +20,7 @@ try {
     setLoading(true)
     const response=await axios.post("api/users/signup",user)
     console.log(response.data)
+    toast.success("Sucess!")
     router.push("/login")
 
     
@@ -72,6 +73,7 @@ try {
         >Signup here</button>
 
 <Link href="/login">Visit login page</Link>
+<Toaster/>
        </div>
     )
 }

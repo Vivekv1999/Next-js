@@ -5,10 +5,11 @@ import nodemailer from "nodemailer";
 export const sendEmail = async ({ email, emailType, userId }: any) => {
   try {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
+console.log(hashedToken,"========hashed============",email, emailType, userId);
 
     if (emailType === "VERIFY") {
       await User.findByIdAndUpdate(userId, {
-        verfifyToken: hashedToken,
+        verifyToken: hashedToken,
         verifyTokenExpiry: Date.now() + 3600000,
       });
     } else if (emailType === "RESET") {

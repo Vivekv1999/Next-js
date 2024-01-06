@@ -3,6 +3,7 @@ import axios from 'axios'
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Verifyemail() {
     const router=useRouter()
@@ -26,6 +27,7 @@ setToken(urlToken || "")
 const verifyUserEmail=async()=>{
     try{
         axios.post('/api/users/verifyemail',{token})
+        toast.success("Sucess!")
         setVerified(true)
     }catch(err){
         setError(true)
@@ -42,6 +44,7 @@ const verifyUserEmail=async()=>{
             <div>
                 <h2 className='p-2 bg-green-400 text-black'>Email Verified</h2>
                 <Link href="/login">Login</Link>
+                <Toaster />
             </div>
         )
       }

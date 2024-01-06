@@ -10,17 +10,17 @@ export async function POST(request: NextRequest) {
     const { token } = reqBody;
 
     const userData = await User.findOne({
-      verfifyToken: token,
+      verifyToken: token,
       verifyTokenExpiry: { $gt: Date.now() },
     });
 
-    
+        
     if(!userData) {
-        return NextResponse.json({ error:"User not found"},{status: 400})
+        return NextResponse.json({ error:"User not found from verify Email"},{status: 400})
     }
 
     userData.isverified = true;
-    userData.verfifyToken = undefined;
+    userData.verifyToken = undefined;
     userData.verifyTokenExpiry = undefined;
 
     await userData.save()
